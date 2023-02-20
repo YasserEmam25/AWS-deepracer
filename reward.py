@@ -30,19 +30,19 @@ def reward_function(params):
         first = objects_distance[-1] - objects_distance[-2]
         second = objects_distance[-3] - objects_distance[-4]
         if first > second :
-            reward *= (first - second) * 0.5
+            reward *= (first - second) * 100.0
         elif first < second:
-            reward *= (first - second) * 0.5
+            reward *= (first - second) * 100.0
             
     # multiply the speed with the reward
-    reward *= speed * 10.0
+    reward *= speed * 100.0
     
     # punish the model if it gets off-track
     if is_offtrack:
-        reward *= 0.01
+        reward = -10.0
     
     # punish the model if it gets crashed
     if is_crashed:
-        reward *= 0.01
+        reward = -10.0
 
     return float(reward)
